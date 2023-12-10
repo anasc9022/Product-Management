@@ -21,14 +21,12 @@ public class CategoryController {
 
     @PostMapping
     ResponseEntity<Category> createCategory(@RequestBody CategoryDTO categoryDTO){
-
         Category category = categoryService.createCategory(categoryDTO);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
     @GetMapping
     ResponseEntity<List<Category>> getCategories(@RequestParam("pageNo") int pageNo){
-
         int pageSize = 10;
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return new ResponseEntity<>(categoryService.getCategories(pageable).getContent(), HttpStatus.OK);
@@ -47,7 +45,6 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     ResponseEntity<String> deleteCategoryById(@PathVariable("id") Long id){
-
         categoryService.deleteCategoryById(id);
         return new ResponseEntity<>("Category Successfully Deleted",HttpStatus.OK);
     }
